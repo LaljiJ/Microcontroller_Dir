@@ -1,0 +1,168 @@
+C51 COMPILER V9.60.7.0   LCD_DRIVER                                                        08/13/2025 06:51:31 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCD_DRIVER
+OBJECT MODULE PLACED IN .\Objects\lcd_driver.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcd_driver.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\lcd_driver.lst) TABS(2) OBJECT(.\Objects\lcd_driver.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <stdio.h>
+   3          #include <string.h>
+   4          #include "lcd_driver.h"
+   5          #include "timer.h"
+   6          
+   7          /*
+   8          unsigned char heart[8] = {
+   9            0x00,
+  10            0x0A,
+  11            0x1F,
+  12            0x1F,
+  13            0x0E,
+  14            0x04,
+  15            0x00,
+  16            0x00
+  17          };
+  18          */
+  19          
+  20          
+  21          // Initialize LCD
+  22          void lcd_init(void) 
+  23          {
+  24   1          lcd_cmd(LCD_8BIT_MODE); // 2 lines, 5x7 matrix, 8-bit mode
+  25   1          delay_ms(5);
+  26   1          lcd_cmd(LCD_DISPLAY_ON_CURSOR_OFF); // Display ON, Cursor OFF
+  27   1          delay_ms(5);
+  28   1          lcd_cmd(LCD_CLEAR); // Clear display
+  29   1          delay_ms(5);
+  30   1          lcd_cmd(LCD_CURSOR_FIRSTLINE);
+  31   1          delay_ms(5);
+  32   1          lcd_cmd(LCD_CURSOR_INCREMENT); // Entry mode set: Increment cursor, no display shift
+  33   1          delay_ms(5);
+  34   1      }
+  35          
+  36          
+  37          // Send command to LCD
+  38          void lcd_cmd(unsigned char cmd) 
+  39          {
+  40   1          LCD_DATA_PORT = cmd;
+  41   1          RS = 0; // Command mode
+  42   1          RW = 0; // Write mode
+  43   1          EN = 1; // Enable pulse
+  44   1          delay_ms(1);
+  45   1          EN = 0;
+  46   1          delay_ms(1);
+  47   1      }
+  48          
+  49          
+  50          // Clear the LCD
+  51          void lcd_clear(unsigned char cmd)
+  52          {
+  53   1          LCD_DATA_PORT = cmd;
+  54   1          RS = ON; // Command mode
+C51 COMPILER V9.60.7.0   LCD_DRIVER                                                        08/13/2025 06:51:31 PAGE 2   
+
+  55   1          RW = ON; // Write mode
+  56   1          EN = OFF; // Enable pulse
+  57   1          delay_ms(1);
+  58   1          EN = ON;
+  59   1          delay_ms(1);
+  60   1      }
+  61          
+  62          // Send datas to LCD
+  63          void lcd_data(unsigned char dat) 
+  64          {
+  65   1          LCD_DATA_PORT = dat;
+  66   1          RS = OFF; // Data mode
+  67   1          RW = ON; // Write mode
+  68   1          EN = OFF; // Enable pulse
+  69   1          delay_ms(1);
+  70   1          EN = ON;
+  71   1          delay_ms(1);
+  72   1      }
+  73          
+  74          
+  75          // Print string to LCD
+  76          void lcd_print_string(char *str) 
+  77          {
+  78   1          lcd_clear(LCD_CLEAR); // Clear the lcd
+  79   1        
+  80   1          while (*str) 
+  81   1          {
+  82   2              lcd_data(*str++);
+  83   2          }
+  84   1      }
+  85          
+  86          
+  87          // Set cursor to beginning of first line
+  88          void lcd_set_cursor_firstline(void) 
+  89          {
+  90   1          lcd_clear(LCD_CLEAR);
+  91   1          lcd_cmd(LCD_CURSOR_FIRSTLINE);
+  92   1          delay_ms(1);
+  93   1      }
+  94          
+  95          
+  96          // Set cursor to beginning of second line
+  97          void lcd_set_cursor_secondline(void) 
+  98          {
+  99   1          lcd_clear(LCD_CLEAR);
+ 100   1          lcd_cmd(LCD_CURSOR_SECONDLINE);
+ 101   1          delay_ms(1);
+ 102   1      }
+ 103          
+ 104          
+ 105          // Scrolling the string
+ 106          void scroll_string(const char *str, int delay_time_ms) 
+ 107          {
+ 108   1          int len = strlen(str),temp;
+ 109   1          char buffer[17];  // 16 chars + null terminator
+ 110   1          buffer[16] = '\0';
+ 111   1      
+ 112   1          if (len <= 16) 
+ 113   1          {
+ 114   2              // If string fits in LCD width, just print it once
+ 115   2              lcd_print_string((char *)str);
+ 116   2              return;
+C51 COMPILER V9.60.7.0   LCD_DRIVER                                                        08/13/2025 06:51:31 PAGE 3   
+
+ 117   2          }
+ 118   1      
+ 119   1          // Scroll from start to end - 16 chars window
+ 120   1          for (temp = 0; temp <= len - 16; temp++) 
+ 121   1          {
+ 122   2              strncpy(buffer, &str[temp], 16);
+ 123   2              lcd_print_string(buffer);
+ 124   2              delay_ms(delay_time_ms);
+ 125   2          }
+ 126   1      }
+ 127          
+ 128          
+ 129          
+ 130          /*
+ 131          //  Store Custom Character in CGRAM: 
+ 132          void lcd_custom_char(unsigned char location, unsigned char *pattern) 
+ 133          {
+ 134              unsigned char i;
+ 135              lcd_cmd(0x40 + (location * 8)); // Address of CGRAM location
+ 136              for (i = 0; i < 8; i++) {
+ 137                  lcd_data(pattern[i]);
+ 138              }
+ 139          }
+ 140          */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    338    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      29
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

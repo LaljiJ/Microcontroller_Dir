@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\sim800l.obj",
+".\Objects\timer.obj",
+".\Objects\uart_driver.obj" 
+TO ".\Objects\SIM800LModule_UART" 
+PRINT(".\Listings\SIM800LModule_UART.m51") RAMSIZE(256) 

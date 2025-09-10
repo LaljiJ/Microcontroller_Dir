@@ -1,0 +1,250 @@
+C51 COMPILER V9.60.7.0   LED                                                               08/12/2025 08:24:40 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN .\Objects\led.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\led.l
+                    -st) TABS(2) OBJECT(.\Objects\led.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "timer.h"
+   3          #include "led.h"
+   4          
+   5          
+   6          
+   7          // Port0 all LEDs check
+   8          void blink_port0_leds(void)
+   9          {
+  10   1        LED0 = OFF;
+  11   1        LED1 = OFF;
+  12   1        LED2 = OFF;
+  13   1        LED3 = OFF;
+  14   1        LED4 = OFF;
+  15   1        LED5 = OFF;
+  16   1        LED6 = OFF;
+  17   1        LED7 = OFF;
+  18   1        
+  19   1          LED0 = ON;
+  20   1          delay_ms(1000);
+  21   1          LED0 = OFF;
+  22   1          delay_ms(1000);
+  23   1      
+  24   1          LED1 = ON;
+  25   1          delay_ms(1000);
+  26   1          LED1 = OFF;
+  27   1          delay_ms(1000);
+  28   1      
+  29   1          LED2 = ON;
+  30   1          delay_ms(1000);
+  31   1          LED2 = OFF;
+  32   1          delay_ms(1000);
+  33   1      
+  34   1          LED3 = ON;
+  35   1          delay_ms(1000);
+  36   1          LED3 = OFF;
+  37   1          delay_ms(1000);
+  38   1      
+  39   1          LED4 = ON;
+  40   1          delay_ms(1000);
+  41   1          LED4 = OFF;
+  42   1          delay_ms(1000);
+  43   1      
+  44   1          LED5 = ON;
+  45   1          delay_ms(1000);
+  46   1          LED5 = OFF;
+  47   1          delay_ms(1000);
+  48   1      
+  49   1          LED6 = ON;
+  50   1          delay_ms(1000);
+  51   1          LED6 = OFF;
+  52   1          delay_ms(1000);
+  53   1      
+  54   1          LED7 = ON;
+C51 COMPILER V9.60.7.0   LED                                                               08/12/2025 08:24:40 PAGE 2   
+
+  55   1          delay_ms(1000);
+  56   1          LED7 = OFF;
+  57   1          delay_ms(1000);
+  58   1      }
+  59          
+  60          
+  61          // Port1 all LEDs check
+  62          void blink_port1_leds(void)
+  63          {
+  64   1        LED8 = OFF;
+  65   1        LED9 = OFF;
+  66   1        LED10 = OFF;
+  67   1        LED11 = OFF;
+  68   1        LED12 = OFF;
+  69   1        LED13 = OFF;
+  70   1        LED14 = OFF;
+  71   1        LED15 = OFF;
+  72   1        
+  73   1          LED8 = ON;
+  74   1          delay_ms(1000);
+  75   1          LED8 = OFF;
+  76   1          delay_ms(1000);
+  77   1      
+  78   1          LED9 = ON;
+  79   1          delay_ms(1000);
+  80   1          LED9 = OFF;
+  81   1          delay_ms(1000);
+  82   1      
+  83   1          LED10 = ON;
+  84   1          delay_ms(1000);
+  85   1          LED10 = OFF;
+  86   1          delay_ms(1000);
+  87   1      
+  88   1          LED11 = ON;
+  89   1          delay_ms(1000);
+  90   1          LED11 = OFF;
+  91   1          delay_ms(1000);
+  92   1      
+  93   1          LED12 = ON;
+  94   1          delay_ms(1000);
+  95   1          LED12 = OFF;
+  96   1          delay_ms(1000);
+  97   1      
+  98   1          LED13 = ON;
+  99   1          delay_ms(1000);
+ 100   1          LED13 = OFF;
+ 101   1          delay_ms(1000);
+ 102   1      
+ 103   1          LED14 = ON;
+ 104   1          delay_ms(1000);
+ 105   1          LED14 = OFF;
+ 106   1          delay_ms(1000);
+ 107   1      
+ 108   1          LED15 = ON;
+ 109   1          delay_ms(1000);
+ 110   1          LED15 = OFF;
+ 111   1          delay_ms(1000);
+ 112   1      }
+ 113          
+ 114          
+ 115          // Port2 all LEDs check
+ 116          void blink_port2_leds(void)
+C51 COMPILER V9.60.7.0   LED                                                               08/12/2025 08:24:40 PAGE 3   
+
+ 117          {
+ 118   1        LED16 = OFF;
+ 119   1        LED17 = OFF;
+ 120   1        LED18 = OFF;
+ 121   1        LED19 = OFF;
+ 122   1        LED20 = OFF;
+ 123   1        LED21 = OFF;
+ 124   1        LED22 = OFF;
+ 125   1        LED23 = OFF;
+ 126   1        
+ 127   1          LED16 = ON;
+ 128   1          delay_ms(1000);
+ 129   1          LED16 = OFF;
+ 130   1          delay_ms(1000);
+ 131   1      
+ 132   1          LED17 = ON;
+ 133   1          delay_ms(1000);
+ 134   1          LED17 = OFF;
+ 135   1          delay_ms(1000);
+ 136   1      
+ 137   1          LED18 = ON;
+ 138   1          delay_ms(1000);
+ 139   1          LED18 = OFF;
+ 140   1          delay_ms(1000);
+ 141   1      
+ 142   1          LED19 = ON;
+ 143   1          delay_ms(1000);
+ 144   1          LED19 = OFF;
+ 145   1          delay_ms(1000);
+ 146   1      
+ 147   1          LED20 = ON;
+ 148   1          delay_ms(1000);
+ 149   1          LED20 = OFF;
+ 150   1          delay_ms(1000);
+ 151   1      
+ 152   1          LED21 = ON;
+ 153   1          delay_ms(1000);
+ 154   1          LED21 = OFF;
+ 155   1          delay_ms(1000);
+ 156   1      
+ 157   1          LED22 = ON;
+ 158   1          delay_ms(1000);
+ 159   1          LED22 = OFF;
+ 160   1          delay_ms(1000);
+ 161   1      
+ 162   1          LED23 = ON;
+ 163   1          delay_ms(1000);
+ 164   1          LED23 = OFF;
+ 165   1          delay_ms(1000);
+ 166   1      }
+ 167          
+ 168          
+ 169          // Port3 all LEDs check
+ 170          void blink_port3_leds(void)
+ 171          {
+ 172   1        LED24 = OFF;
+ 173   1        LED25 = OFF;
+ 174   1        LED26 = OFF;
+ 175   1        LED27 = OFF;
+ 176   1        LED28 = OFF;
+ 177   1        LED29 = OFF;
+ 178   1        LED30 = OFF;
+C51 COMPILER V9.60.7.0   LED                                                               08/12/2025 08:24:40 PAGE 4   
+
+ 179   1        LED31 = OFF;
+ 180   1        
+ 181   1          LED24 = ON;
+ 182   1          delay_ms(1000);
+ 183   1          LED24 = OFF;
+ 184   1          delay_ms(1000);
+ 185   1      
+ 186   1          LED25 = ON;
+ 187   1          delay_ms(1000);
+ 188   1          LED25 = OFF;
+ 189   1          delay_ms(1000);
+ 190   1      
+ 191   1          LED26 = ON;
+ 192   1          delay_ms(1000);
+ 193   1          LED26 = OFF;
+ 194   1          delay_ms(1000);
+ 195   1      
+ 196   1          LED27 = ON;
+ 197   1          delay_ms(1000);
+ 198   1          LED27 = OFF;
+ 199   1          delay_ms(1000);
+ 200   1      
+ 201   1          LED28 = ON;
+ 202   1          delay_ms(1000);
+ 203   1          LED28 = OFF;
+ 204   1          delay_ms(1000);
+ 205   1      
+ 206   1          LED29 = ON;
+ 207   1          delay_ms(1000);
+ 208   1          LED29 = OFF;
+ 209   1          delay_ms(1000);
+ 210   1      
+ 211   1          LED30 = ON;
+ 212   1          delay_ms(1000);
+ 213   1          LED30 = OFF;
+ 214   1          delay_ms(1000);
+ 215   1      
+ 216   1          LED31 = ON;
+ 217   1          delay_ms(1000);
+ 218   1          LED31 = OFF;
+ 219   1          delay_ms(1000);
+ 220   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    640    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

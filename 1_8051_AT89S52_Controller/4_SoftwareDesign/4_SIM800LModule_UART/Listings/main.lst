@@ -1,0 +1,45 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              08/13/2025 06:50:10 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "timer.h"
+   3          #include "uart_driver.h"
+   4          #include "sim800l.h"
+   5          
+   6          void main() 
+   7          {
+   8   1          UART_init();  // Initialize UART
+   9   1          delay_ms(50);  // Delay for stability
+  10   1          SIM800_Init(); // Initialize SIM800 module
+  11   1          delay_ms(50);
+  12   1      
+  13   1          UART_send_string("UART Initialized\r\n");
+  14   1      
+  15   1          while (1) 
+  16   1          {
+  17   2              // Example: Send an SMS
+  18   2              SIM800_SendSMS("YOUR_MOBILE_NUMBER", "Hello from AT89S52! - Lalji's project");
+  19   2              delay_ms(5000); // Wait for 5 seconds before sending another SMS
+  20   2          }
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     56    ----
+   CONSTANT SIZE    =     76    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

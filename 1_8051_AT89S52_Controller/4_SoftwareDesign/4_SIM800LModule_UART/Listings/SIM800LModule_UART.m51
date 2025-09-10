@@ -1,0 +1,310 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    08/13/2025  06:50:14  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\sim800l.obj, .\Objects\timer.obj, .\Objects\uart_driver.obj TO
+>>  .\Objects\SIM800LModule_UART PRINT (.\Listings\SIM800LModule_UART.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\sim800l.obj (SIM800L)
+  .\Objects\timer.obj (TIMER)
+  .\Objects\uart_driver.obj (UART_DRIVER)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\SIM800LModule_UART (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     004CH     UNIT         _DATA_GROUP_
+            IDATA   006EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0B5CH     008EH     UNIT         ?C?LIB_CODE
+            CODE    0BEAH     004CH     UNIT         ?CO?MAIN
+            CODE    0C36H     0038H     UNIT         ?PR?MAIN?MAIN
+            CODE    0C6EH     0035H     UNIT         ?PR?_SIM800_SENDSMS?SIM800L
+            CODE    0CA3H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0CCAH     0025H     UNIT         ?PR?_UART_SEND_STRING?UART_DRIVER
+            CODE    0CEFH     0022H     UNIT         ?PR?_DELAY_MS?TIMER
+            CODE    0D11H     001FH     UNIT         ?CO?SIM800L
+            CODE    0D30H     001BH     UNIT         ?PR?SIM800_INIT?SIM800L
+            CODE    0D4BH     0014H     UNIT         ?PR?_SIM800_SENDATCOMMAND?SIM800L
+            CODE    0D5FH     0013H     UNIT         ?PR?DELAY_1MS_TIMER?TIMER
+            CODE    0D72H     000CH     UNIT         ?PR?UART_INIT?UART_DRIVER
+            CODE    0D7EH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0D8AH     0008H     UNIT         ?PR?_UART_WRITE?UART_DRIVER
+            CODE    0D92H     0008H     UNIT         ?PR?UART_READ?UART_DRIVER
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  08/13/2025  06:50:14  PAGE 2
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\SIM800LModule_UART (MAIN)
+
+
+SEGMENT                                      BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                     START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------------
+?C_C51STARTUP                             -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                             -----    -----      -----    -----
+  +--> ?PR?UART_INIT?UART_DRIVER
+  +--> ?PR?_DELAY_MS?TIMER
+  +--> ?PR?SIM800_INIT?SIM800L
+  +--> ?CO?MAIN
+  +--> ?PR?_UART_SEND_STRING?UART_DRIVER
+  +--> ?PR?_SIM800_SENDSMS?SIM800L
+
+?PR?_DELAY_MS?TIMER                       -----    -----      005AH    0004H
+  +--> ?PR?DELAY_1MS_TIMER?TIMER
+
+?PR?SIM800_INIT?SIM800L                   -----    -----      -----    -----
+  +--> ?CO?SIM800L
+  +--> ?PR?_SIM800_SENDATCOMMAND?SIM800L
+
+?PR?_SIM800_SENDATCOMMAND?SIM800L         -----    -----      -----    -----
+  +--> ?PR?_UART_SEND_STRING?UART_DRIVER
+  +--> ?PR?_UART_WRITE?UART_DRIVER
+  +--> ?PR?_DELAY_MS?TIMER
+
+?PR?_UART_SEND_STRING?UART_DRIVER         -----    -----      005AH    0003H
+  +--> ?PR?_UART_WRITE?UART_DRIVER
+
+?PR?_SIM800_SENDSMS?SIM800L               -----    -----      0022H    0038H
+  +--> ?CO?SIM800L
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_SIM800_SENDATCOMMAND?SIM800L
+  +--> ?PR?_UART_SEND_STRING?UART_DRIVER
+  +--> ?PR?_UART_WRITE?UART_DRIVER
+
+?PR?PRINTF?PRINTF                         0020H.0  0001H.1    005AH    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\SIM800LModule_UART (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0C36H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0C36H         LINE#         6
+  C:0C36H         LINE#         7
+  C:0C36H         LINE#         8
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  08/13/2025  06:50:14  PAGE 3
+
+
+  C:0C39H         LINE#         9
+  C:0C40H         LINE#         10
+  C:0C43H         LINE#         11
+  C:0C4AH         LINE#         13
+  C:0C53H         LINE#         15
+  C:0C53H         LINE#         16
+  C:0C53H         LINE#         18
+  C:0C65H         LINE#         19
+  C:0C6CH         LINE#         20
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SIM800L
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0D4BH         PUBLIC        _SIM800_SendATCommand
+  C:0C6EH         PUBLIC        _SIM800_SendSMS
+  C:0D30H         PUBLIC        SIM800_Init
+  -------         PROC          SIM800_INIT
+  C:0D30H         LINE#         4
+  C:0D30H         LINE#         5
+  C:0D30H         LINE#         6
+  C:0D39H         LINE#         7
+  C:0D42H         LINE#         8
+  -------         ENDPROC       SIM800_INIT
+  -------         PROC          _SIM800_SENDATCOMMAND
+  D:0001H         SYMBOL        command
+  C:0D4BH         LINE#         13
+  C:0D4BH         LINE#         14
+  C:0D4BH         LINE#         15
+  C:0D4EH         LINE#         16
+  C:0D53H         LINE#         17
+  C:0D58H         LINE#         18
+  -------         ENDPROC       _SIM800_SENDATCOMMAND
+  -------         PROC          _SIM800_SENDSMS
+  D:0022H         SYMBOL        mobile_number
+  D:0025H         SYMBOL        message
+  -------         DO            
+  D:0028H         SYMBOL        cmd
+  -------         ENDDO         
+  C:0C6EH         LINE#         23
+  C:0C74H         LINE#         25
+  C:0C8CH         LINE#         26
+  C:0C95H         LINE#         27
+  C:0C9EH         LINE#         28
+  -------         ENDPROC       _SIM800_SENDSMS
+  -------         ENDMOD        SIM800L
+
+  -------         MODULE        TIMER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0D5FH         PUBLIC        delay_1ms_timer
+  D:0089H         PUBLIC        TMOD
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:0CEFH         PUBLIC        _delay_ms
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          _DELAY_MS
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  08/13/2025  06:50:14  PAGE 4
+
+
+  D:005AH         SYMBOL        time_ms
+  -------         DO            
+  D:005CH         SYMBOL        i
+  -------         ENDDO         
+  C:0CEFH         LINE#         5
+  C:0CF3H         LINE#         6
+  C:0CF3H         LINE#         8
+  C:0D03H         LINE#         9
+  C:0D03H         LINE#         10
+  C:0D06H         LINE#         11
+  C:0D10H         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          DELAY_1MS_TIMER
+  C:0D5FH         LINE#         17
+  C:0D5FH         LINE#         18
+  C:0D5FH         LINE#         19
+  C:0D62H         LINE#         25
+  C:0D65H         LINE#         26
+  C:0D68H         LINE#         28
+  C:0D6AH         LINE#         29
+  C:0D6DH         LINE#         30
+  C:0D6FH         LINE#         31
+  C:0D71H         LINE#         32
+  -------         ENDPROC       DELAY_1MS_TIMER
+  -------         ENDMOD        TIMER
+
+  -------         MODULE        UART_DRIVER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0D92H         PUBLIC        UART_read
+  C:0CCAH         PUBLIC        _UART_send_string
+  C:0D8AH         PUBLIC        _UART_write
+  D:008DH         PUBLIC        TH1
+  C:0D72H         PUBLIC        UART_init
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          UART_INIT
+  C:0D72H         LINE#         6
+  C:0D72H         LINE#         7
+  C:0D72H         LINE#         8
+  C:0D75H         LINE#         9
+  C:0D78H         LINE#         10
+  C:0D7BH         LINE#         11
+  C:0D7DH         LINE#         12
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _UART_WRITE
+  D:0007H         SYMBOL        ch
+  C:0D8AH         LINE#         16
+  C:0D8AH         LINE#         17
+  C:0D8AH         LINE#         18
+  C:0D8CH         LINE#         19
+  C:0D8FH         LINE#         20
+  C:0D91H         LINE#         21
+  -------         ENDPROC       _UART_WRITE
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  08/13/2025  06:50:14  PAGE 5
+
+
+  -------         PROC          UART_READ
+  C:0D92H         LINE#         25
+  C:0D92H         LINE#         26
+  C:0D92H         LINE#         27
+  C:0D95H         LINE#         28
+  C:0D97H         LINE#         29
+  C:0D99H         LINE#         30
+  -------         ENDPROC       UART_READ
+  -------         PROC          _UART_SEND_STRING
+  D:005AH         SYMBOL        str
+  C:0CCAH         LINE#         34
+  C:0CD0H         LINE#         35
+  C:0CD0H         LINE#         36
+  C:0CDBH         LINE#         37
+  C:0CECH         LINE#         38
+  C:0CEEH         LINE#         39
+  -------         ENDPROC       _UART_SEND_STRING
+  -------         ENDMOD        UART_DRIVER
+
+  -------         MODULE        ?C?CLDPTR
+  C:0B5CH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        PRINTF
+  D:005AH         PUBLIC        ?_PRINTF517?BYTE
+  D:005AH         PUBLIC        ?_PRINTF?BYTE
+  D:005AH         PUBLIC        ?_SPRINTF517?BYTE
+  D:005AH         PUBLIC        ?_SPRINTF?BYTE
+  C:0862H         PUBLIC        _PRINTF
+  C:0862H         PUBLIC        _PRINTF517
+  C:085CH         PUBLIC        _SPRINTF
+  C:085CH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0B75H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0BA2H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:0BB4H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:0BC4H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0CA3H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART_READ?UART_DRIVER
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  08/13/2025  06:50:14  PAGE 6
+
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 017DH BYTE (18%) *
+******************************************************************************
+
+Program Size: data=86.1 xdata=0 code=1437
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,5 @@
+".\Objects\led.obj",
+".\Objects\main.obj",
+".\Objects\timer.obj" 
+TO ".\Objects\PortChecking" 
+PRINT(".\Listings\PortChecking.m51") RAMSIZE(256) 

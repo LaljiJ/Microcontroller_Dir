@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\timer.obj",
+".\Objects\i2c_driver.obj",
+".\Objects\ds1307.obj" 
+TO ".\Objects\DS1307_RTC_I2C" 
+PRINT(".\Listings\DS1307_RTC_I2C.m51") RAMSIZE(256) 

@@ -1,0 +1,58 @@
+C51 COMPILER V9.60.7.0   TIMER                                                             08/13/2025 06:50:10 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\Objects\timer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE timer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\tim
+                    -er.lst) TABS(2) OBJECT(.\Objects\timer.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "timer.h"
+   3          
+   4          // Function to delay by given number of milliseconds
+   5          void delay_ms(unsigned int time_ms)
+   6          {
+   7   1          unsigned int i;
+   8   1          for (i = 0; i < time_ms; i++)
+   9   1          {
+  10   2              delay_1ms_timer();
+  11   2          }
+  12   1      }
+  13          
+  14          
+  15          
+  16          // 1ms delay usings Timer 0, Mode 1 (16-bits)
+  17          void delay_1ms_timer(void)
+  18          {
+  19   1          TMOD = 0x01; // Timer 0, Mode 1 (16-bits)
+  20   1          
+  21   1          // Load TH0 and TL0 for 1ms delay
+  22   1          // For 11.0592 MHz, 1 machine cycle = 1.085 µs
+  23   1          // Timer counts = (1ms / 1.085µs) ≈ 921.6 → 922 (approx)
+  24   1          // 65536 - 922 = 64614 → 0xFC66
+  25   1          TH0 = 0xFC;  // High byte
+  26   1          TL0 = 0x66;  // Low byte
+  27   1      
+  28   1          TR0 = 1;         // Start Timer 0
+  29   1          while (TF0 == 0); // Wait for Timer Overflow
+  30   1          TR0 = 0;         // Stop Timer
+  31   1          TF0 = 0;         // Clear overflow flag
+  32   1      }
+  33          
+  34          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     53    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

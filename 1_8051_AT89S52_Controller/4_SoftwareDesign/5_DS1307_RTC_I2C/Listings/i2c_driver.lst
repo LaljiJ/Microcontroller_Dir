@@ -1,0 +1,119 @@
+C51 COMPILER V9.60.7.0   I2C_DRIVER                                                        08/13/2025 08:38:58 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE I2C_DRIVER
+OBJECT MODULE PLACED IN .\Objects\i2c_driver.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE i2c_driver.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\i2c_driver.lst) TABS(2) OBJECT(.\Objects\i2c_driver.obj)
+
+line level    source
+
+   1          #include "header.h"
+*** WARNING C318 IN LINE 1 OF i2c_driver.c: can't open file 'header.h'
+   2          #include "i2c_driver.h"
+   3          
+   4          // Define I2C pins
+   5          sbit SDA = P1^0;
+   6          sbit SCL = P1^1;
+   7          
+   8          // I2C start condition
+   9          void i2c_start() 
+  10          {
+  11   1          SDA = 1; 
+  12   1          SCL = 1;
+  13   1          SDA = 0; // SDA low while SCL is high
+  14   1          SCL = 0;
+  15   1      }
+  16          
+  17          
+  18          // I2C write data frame
+  19          void i2c_write(unsigned char dat) 
+  20          {
+  21   1          unsigned char i;
+  22   1          for(i=0; i<8; i++) 
+  23   1          {
+  24   2              SDA = (dat & 0x80) ? 1 : 0;
+  25   2              SCL = 1; 
+  26   2              SCL = 0;
+  27   2              dat <<= 1;
+  28   2          }
+  29   1          // Check for ACK from slave
+  30   1          SDA = 1; 
+  31   1          SCL = 1;
+  32   1          while(SDA); // Wait for SDA to go low (ACK)
+  33   1          SCL = 0;
+  34   1      }
+  35          
+  36          
+  37          // I2C read data frame
+  38          unsigned char i2c_read() 
+  39          {
+  40   1          unsigned char i, dat = 0;
+  41   1          SDA = 1; // Release SDA for slave to drive
+  42   1          for(i=0; i<8; i++) 
+  43   1          {
+  44   2              SCL = 1;
+  45   2              dat <<= 1;
+  46   2              if(SDA)
+  47   2              {
+  48   3                dat |= 0x01;
+  49   3              }
+  50   2              SCL = 0;
+  51   2          }
+  52   1          return dat;
+  53   1      }
+C51 COMPILER V9.60.7.0   I2C_DRIVER                                                        08/13/2025 08:38:58 PAGE 2   
+
+  54          
+  55          
+  56          // Send ACK
+  57          void i2c_ack() 
+  58          {
+  59   1          SDA = 0;
+  60   1          SCL = 1;
+  61   1          SCL = 0;
+  62   1      }
+  63          
+  64          
+  65          // Send NACK
+  66          void i2c_nack() 
+  67          {
+  68   1          SDA = 1;
+  69   1          SCL = 1;
+  70   1          SCL = 0;
+  71   1      }
+  72          
+  73          
+  74          // Check ACK from Slave
+  75          bit i2c_check_ack() 
+  76          {
+  77   1          bit ack;
+  78   1          SDA = 1;
+  79   1          SCL = 1;
+  80   1          ack = SDA; // 0 = ACK, 1 = NACK
+  81   1          SCL = 0;
+  82   1          return (ack == 0);
+  83   1      }
+  84          
+  85          
+  86          // I2C stop condition
+  87          void i2c_stop()
+  88          {
+  89   1          SDA = 0; 
+  90   1          SCL = 1;
+  91   1          SDA = 1; // SDA high while SCL is high
+  92   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    106    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

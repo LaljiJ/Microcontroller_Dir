@@ -1,0 +1,52 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              08/13/2025 06:51:31 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*----- standard headerfile -----*/
+   2          #include <reg51.h>
+   3          
+   4          
+   5          /*----- User define header files -----*/
+   6          #include "main.h"
+   7          #include "timer.h"
+   8          #include "lcd_driver.h"
+   9          
+  10          
+  11          /*----- Main function -----*/
+  12          void main(void)
+  13          {
+  14   1        lcd_init();
+  15   1        
+  16   1            delay_ms(1000);
+  17   1            lcd_print_string("Hello world!");
+  18   1        
+  19   1        while(1)
+  20   1        {
+  21   2          // running;
+  22   2            delay_ms(1000);
+  23   2            scroll_string("This is a 16x2 LCD driver for AT89S52 controller",200);
+  24   2            delay_ms(1000);
+  25   2            lcd_print_string("Thank you!");
+  26   2        }
+  27   1      
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     57    ----
+   CONSTANT SIZE    =     73    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

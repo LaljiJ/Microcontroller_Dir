@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.7.0   DS1307                                                            08/13/2025 08:38:58 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE DS1307
+OBJECT MODULE PLACED IN .\Objects\ds1307.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ds1307.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ds
+                    -1307.lst) TABS(2) OBJECT(.\Objects\ds1307.obj)
+
+line level    source
+
+   1          #include "ds1307.h"
+   2          #include "i2c_driver.h"
+   3          
+   4          
+   5          // Write Time to DS1307
+   6          void ds1307_write_time(unsigned char sec, unsigned char min, unsigned char hour)
+   7          {
+   8   1          i2c_start();
+   9   1          i2c_write(0xD0); // Write address
+  10   1          i2c_write(0x00); // Seconds register
+  11   1          i2c_write(sec);
+  12   1          i2c_write(min);
+  13   1          i2c_write(hour);
+  14   1          i2c_stop();
+  15   1      }
+  16          
+  17          
+  18          // Read Time from DS1307
+  19          void ds1307_read_time(unsigned char *sec, unsigned char *min, unsigned char *hour) 
+  20          {
+  21   1          i2c_start();
+  22   1          i2c_write(0xD0); // Write mode
+  23   1          i2c_write(0x00); // Point to seconds register
+  24   1          i2c_stop();
+  25   1      
+  26   1          i2c_start();
+  27   1          i2c_write(0xD1); // Read mode
+  28   1          *sec = i2c_read(); 
+  29   1          i2c_ack();
+  30   1          *min = i2c_read(); 
+  31   1          i2c_ack();
+  32   1          *hour = i2c_read(); 
+  33   1          i2c_nack();
+  34   1          i2c_stop();
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    118    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

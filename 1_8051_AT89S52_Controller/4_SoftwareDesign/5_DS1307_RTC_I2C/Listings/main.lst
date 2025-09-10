@@ -1,0 +1,45 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              08/13/2025 08:38:58 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "timer.h"
+   3          #include "i2c_driver.h"
+   4          #include "ds1307.h"
+   5          
+   6          // Main start
+   7          void main() 
+   8          {
+   9   1          unsigned char seconds, minutes, hours;
+  10   1      
+  11   1          // Initialize time (e.g., to 00:00:00)
+  12   1          // ds1307_write_time(0x00, 0x00, 0x00); 
+  13   1      
+  14   1          while(1) 
+  15   1          {
+  16   2              ds1307_read_time(&seconds, &minutes, &hours);
+  17   2              delay_ms(10);
+  18   2              // Display time on LCD or serial port (implementation not shown here)
+  19   2              // For example: printf("%02x:%02x:%02x\n", hours, minutes, seconds);
+  20   2          }
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     36    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

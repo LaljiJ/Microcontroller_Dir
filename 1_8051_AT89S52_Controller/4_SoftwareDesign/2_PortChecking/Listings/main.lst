@@ -1,0 +1,103 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              08/12/2025 08:24:40 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*----- Standard headerfile -----*/
+   2          #include <reg51.h>
+   3          
+   4          
+   5          /*----- User define headerfiles -----*/
+   6          #include "main.h"
+   7          #include "timer.h"
+   8          #include "led.h"
+   9          
+  10          
+  11          
+  12          /*----- Main function -----*/
+  13          void main(void)
+  14          {
+  15   1          init_all_port();
+  16   1        
+  17   1          while(1)
+  18   1          {
+  19   2            blink_port0_leds();
+  20   2            // blink_port1_leds();
+  21   2            // blink_port2_leds();
+  22   2            // blink_port3_leds();
+  23   2          }
+  24   1      }
+  25          
+  26          
+  27          
+  28          /*----- Function declaration -----*/
+  29          /* 
+  30          Initialize all ports for output
+  31          If we write on 1 on this port then it will on the LED.
+  32          */
+  33          void init_all_port(void)
+  34          {
+  35   1          init_port0();
+  36   1          init_port1();
+  37   1          init_port2();
+  38   1          init_port3();
+  39   1      }
+  40          
+  41          /* 
+  42          Initialize port0 for output
+  43          If we write on 1 on this port then it will on the LED.
+  44          */
+  45          void init_port0(void)
+  46          {
+  47   1          P0 = 0x00;
+  48   1      }
+  49          
+  50          /*
+  51          Initialize port1 for output
+  52          If we write on 1 on this port then it will on the LED.
+  53          */
+  54          void init_port1(void)
+C51 COMPILER V9.60.7.0   MAIN                                                              08/12/2025 08:24:40 PAGE 2   
+
+  55          {
+  56   1          P1 = 0x00;
+  57   1      }
+  58          
+  59          
+  60          /*
+  61          Initialize port2 for output
+  62          If we write on 1 on this port then it will on the LED.
+  63          */
+  64          void init_port2(void)
+  65          {
+  66   1          P2 = 0x00;
+  67   1      }
+  68          
+  69          
+  70          /*
+  71          Initialize port3 for output
+  72          If we write on 1 on this port then it will on the LED.
+  73          */
+  74          void init_port3(void)
+  75          {
+  76   1          P3 = 0x00;
+  77   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     36    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

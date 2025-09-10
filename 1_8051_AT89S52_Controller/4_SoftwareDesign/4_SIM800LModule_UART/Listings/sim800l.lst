@@ -1,0 +1,53 @@
+C51 COMPILER V9.60.7.0   SIM800L                                                           08/13/2025 06:50:10 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SIM800L
+OBJECT MODULE PLACED IN .\Objects\sim800l.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE sim800l.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\s
+                    -im800l.lst) TABS(2) OBJECT(.\Objects\sim800l.obj)
+
+line level    source
+
+   1          #include "sim800l.h"
+   2          
+   3          // Initialize SIM800
+   4          void SIM800_Init() 
+   5          {
+   6   1          SIM800_SendATCommand("AT"); // Handshake
+   7   1          SIM800_SendATCommand("ATE0"); // Disable echo
+   8   1          SIM800_SendATCommand("AT+CMGF=1"); // Set SMS to text mode
+   9   1      }
+  10          
+  11          
+  12          // Send AT command to SIM800
+  13          void SIM800_SendATCommand(char *command) 
+  14          {
+  15   1          UART_send_string(command);
+  16   1          UART_write(0x0D); // Carriage Return
+  17   1          UART_write(0x0A); // Line Feed
+  18   1          delay_ms(100); // Small delay for response
+  19   1      }
+  20          
+  21          
+  22          // Send SMS
+  23          void SIM800_SendSMS(char *mobile_number, char *message) {
+  24   1          char cmd[50];
+  25   1          sprintf(cmd, "AT+CMGS=\"%s\"", mobile_number);
+  26   1          SIM800_SendATCommand(cmd);
+  27   1          UART_send_string(message);
+  28   1          UART_write(0x1A); // Ctrl+Z to send message
+  29   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    100    ----
+   CONSTANT SIZE    =     31    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      56
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
